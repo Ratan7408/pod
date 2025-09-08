@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Star, Users, Zap } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Users } from "lucide-react";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -166,7 +166,7 @@ export default function LimitedEditionCarousel() {
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
           loop={true}
-          slidesPerView={3}
+          slidesPerView={1}
           spaceBetween={20}
           grabCursor={true}
           speed={600}
@@ -192,15 +192,33 @@ export default function LimitedEditionCarousel() {
           breakpoints={{
             320: {
               slidesPerView: 1,
+              spaceBetween: 15,
+              centeredSlides: true,
+              effect: 'slide',
+            },
+            480: {
+              slidesPerView: 1,
               spaceBetween: 20,
+              centeredSlides: true,
+              effect: 'slide',
+            },
+            640: {
+              slidesPerView: 1.5,
+              spaceBetween: 20,
+              centeredSlides: true,
+              effect: 'coverflow',
             },
             768: {
-              slidesPerView: 3,
+              slidesPerView: 2,
               spaceBetween: 20,
+              centeredSlides: true,
+              effect: 'coverflow',
             },
             1024: {
               slidesPerView: 3,
               spaceBetween: 20,
+              centeredSlides: true,
+              effect: 'coverflow',
             },
           }}
           className="swiper-wrapper"
@@ -221,14 +239,6 @@ export default function LimitedEditionCarousel() {
                     />
                     <div className="img-overlay"></div>
                   </div>
-
-                  {design.trending && (
-                    <div className="trending-badge">
-                      <Zap size={14} />
-                      <span>HOT</span>
-                      <div className="badge-pulse"></div>
-                    </div>
-                  )}
                 </div>
 
                 <div className="card-content">
@@ -281,7 +291,6 @@ export default function LimitedEditionCarousel() {
 
         /*=============== BACKGROUND ===============*/
         .testimonial {
-        padding: 5rem 0;
           min-height: 100vh;
           display: flex;
           flex-direction: column;
@@ -289,21 +298,23 @@ export default function LimitedEditionCarousel() {
           align-items: center;
           overflow: hidden;
           position: relative;
-          background: linear-gradient(135deg, #0f0f1a 0%, #0a0a15 50%, #050510 100%);
+          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+          padding: 2rem 0;
         }
 
         /*=============== AWESOME TITLE ===============*/
         .testimonial__title {
           font-family: 'Unbounded', sans-serif;
-          font-size: clamp(4rem, 8vw, 4rem);
+          font-size: clamp(1.8rem, 6vw, 4rem);
           font-weight: 700;
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: 2rem;
           position: relative;
           z-index: 10;
           display: flex;
-          flex-direction: row;
-          gap: 0.5rem;
+          flex-direction: column;
+          gap: 0.2rem;
+          padding: 0 1rem;
         }
 
         .title-line {
@@ -335,25 +346,29 @@ export default function LimitedEditionCarousel() {
         .container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 0 2rem;
+          padding: 0 1rem;
           position: relative;
           z-index: 10;
+          width: 100%;
         }
 
         .testimonial__swiper {
-          padding-bottom: 15rem;
+          padding-bottom: 8rem;
           position: relative;
+          width: 100%;
         }
 
         /*=============== AWESOME CARDS ===============*/
         .testimonial__card {
-          width: 400px;
-          height: 600px;
+          width: 100%;
+          max-width: 350px;
+          height: auto;
+          min-height: 500px;
           background: var(--card-gradient);
           backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 24px;
-          padding: 2rem 1.5rem 2.5rem;
+          border-radius: 20px;
+          padding: 1.5rem;
           text-align: center;
           position: relative;
           overflow: hidden;
@@ -363,6 +378,7 @@ export default function LimitedEditionCarousel() {
           display: flex;
           flex-direction: column;
           z-index: 10;
+          margin: 0 auto;
         }
 
         @keyframes cardFloat {
@@ -370,12 +386,12 @@ export default function LimitedEditionCarousel() {
           50% { transform: translateY(-10px); }
         }
 
-
         /*=============== IMAGE CONTAINER ===============*/
         .testimonial__img-container {
           position: relative;
           width: 100%;
-          height: 350px;
+          height: 250px;
+          margin: 0 auto 1rem;
           flex-shrink: 0;
         }
 
@@ -396,20 +412,16 @@ export default function LimitedEditionCarousel() {
         }
 
         .testimonial__img {
-          width: 140%;
-          height: 140%;
-          object-fit: contain;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
           border-radius: 16px;
           transition: transform 0.3s ease;
           mix-blend-mode: multiply;
-          transform: scale(1.5) translateY(-50px);
-          position: absolute;
-          top: -50px;
-          transform: translateX(-50%) scale(1.5) translateY(-50px);
         }
 
         .testimonial__card:hover .testimonial__img {
-          transform: translateX(-50%) scale(1.6) translateY(-50px);
+          transform: scale(1.05);
         }
 
         .img-overlay {
@@ -428,48 +440,6 @@ export default function LimitedEditionCarousel() {
           opacity: 1;
         }
 
-        /*=============== TRENDING BADGE ===============*/
-        .trending-badge {
-          position: absolute;
-          top: -10px;
-          right: -10px;
-          background: linear-gradient(45deg, #ff6b6b, #fbbf24);
-          color: white;
-          padding: 8px 12px;
-          border-radius: 20px;
-          font-size: 0.75rem;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          z-index: 20;
-          box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-          animation: badgePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes badgePulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
-        }
-
-        .badge-pulse {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(45deg, #ff6b6b, #fbbf24);
-          border-radius: 20px;
-          opacity: 0.3;
-          animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 0.3; }
-          50% { transform: scale(1.2); opacity: 0.1; }
-          100% { transform: scale(1); opacity: 0.3; }
-        }
-
         /*=============== CARD CONTENT ===============*/
         .card-content {
           position: relative;
@@ -478,27 +448,29 @@ export default function LimitedEditionCarousel() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          padding: 0.5rem 0;
         }
 
         .design-title {
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           font-weight: 700;
           color: var(--text-primary);
           margin-bottom: 0.5rem;
           text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          line-height: 1.3;
         }
 
         .character-name {
-          font-size: 1.3rem;
+          font-size: 1.1rem;
           font-weight: 600;
           color: #667eea;
           margin-bottom: 0.3rem;
         }
 
         .anime-series {
-          font-size: 1rem;
+          font-size: 0.9rem;
           color: var(--text-secondary);
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
           font-style: italic;
         }
 
@@ -506,13 +478,13 @@ export default function LimitedEditionCarousel() {
           display: flex;
           justify-content: center;
           align-items: center;
-          gap: 0.8rem;
+          gap: 0.5rem;
           margin-bottom: 0;
         }
 
         .rating-stars {
           display: flex;
-          gap: 3px;
+          gap: 2px;
         }
 
         .star-icon {
@@ -532,115 +504,19 @@ export default function LimitedEditionCarousel() {
         }
 
         .rating-number {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-weight: 700;
           color: var(--text-primary);
         }
 
-        .products-showcase {
-          margin-bottom: 1rem;
-        }
-
-        .products-title {
-          font-size: 0.9rem;
-          color: var(--text-secondary);
-          margin-bottom: 0.8rem;
-          font-weight: 600;
-        }
-
-        .products-grid {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          justify-content: center;
-        }
-
-        .sales-stats {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 0.5rem;
-          color: var(--text-secondary);
-          font-size: 0.85rem;
-          margin-bottom: 1rem;
-        }
-
-        .design-description {
-          margin-top: auto;
-        }
-
-        .design-description p {
-          color: var(--text-secondary);
-          font-size: 0.8rem;
-          line-height: 1.4;
-          font-style: italic;
-        }
-
-        /*=============== ENHANCED NAVIGATION ===============*/
-        .custom-nav {
-          position: absolute;
-          bottom: 2rem;
-          width: 60px;
-          height: 60px;
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          z-index: 20;
-        }
-
-        .custom-nav:hover {
-          background: rgba(255, 255, 255, 0.2);
-          transform: scale(1.1);
-          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .nav-icon {
-          font-size: 1.5rem;
-          color: var(--text-primary);
-        }
-
-        .nav-glow {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: linear-gradient(45deg, #667eea, #764ba2);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          z-index: -1;
-        }
-
-        .custom-nav:hover .nav-glow {
-          opacity: 0.3;
-        }
-
-        .swiper-button-prev {
-          bottom: 2rem;
-          left: calc(50% - 4rem);
-        }
-
-        .swiper-button-next {
-          bottom: 2rem;
-          right: calc(50% - 4rem);
-        }
-
         /*=============== ENHANCED PAGINATION ===============*/
         .custom-pagination {
-          bottom: 5rem !important;
+          bottom: 3rem !important;
         }
 
         .custom-pagination .swiper-pagination-bullet {
-          margin-top:10rem;
-          width: 12px;
-          height: 12px;
+          width: 10px;
+          height: 10px;
           background: rgba(255, 255, 255, 0.3);
           border: 2px solid rgba(255, 255, 255, 0.5);
           opacity: 1;
@@ -650,50 +526,121 @@ export default function LimitedEditionCarousel() {
         .custom-pagination .swiper-pagination-bullet-active {
           background: #667eea;
           border-color: #667eea;
-          transform: scale(1.3);
-          box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+          transform: scale(1.2);
+          box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
         }
 
         /*=============== RESPONSIVE ===============*/
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
+          .testimonial {
+            padding: 1rem 0;
+            min-height: auto;
+          }
+          
+          .testimonial__title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            gap: 0.1rem;
+          }
+          
+          .container {
+            padding: 0 0.5rem;
+          }
+          
+          .testimonial__swiper {
+            padding-bottom: 6rem;
+          }
+          
+          .testimonial__card {
+            max-width: 300px;
+            min-height: 450px;
+            padding: 1rem;
+            border-radius: 16px;
+          }
+          
+          .testimonial__img-container {
+            height: 200px;
+            margin-bottom: 0.8rem;
+          }
+          
+          .design-title {
+            font-size: 1.1rem;
+          }
+          
+          .character-name {
+            font-size: 1rem;
+          }
+          
+          .anime-series {
+            font-size: 0.8rem;
+          }
+          
+          .star-icon {
+            width: 14px;
+            height: 14px;
+          }
+          
+          .rating-number {
+            font-size: 0.9rem;
+          }
+          
+          .custom-pagination {
+            bottom: 2rem !important;
+          }
+          
+          .custom-pagination .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+          }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
           .testimonial__title {
             font-size: 2rem;
             margin-bottom: 2rem;
           }
           
           .testimonial__card {
-            height: 450px;
-            padding: 1.5rem 1rem 2rem;
+            max-width: 320px;
+            min-height: 480px;
           }
           
           .testimonial__img-container {
-            width: 120px;
-            height: 120px;
-          }
-          
-          .custom-nav {
-            width: 50px;
-            height: 50px;
-          }
-          
-          .nav-icon {
-            font-size: 1.2rem;
+            height: 220px;
           }
         }
 
-        @media (max-width: 480px) {
-          .testimonial__card {
-            height: 420px;
-            padding: 1.2rem 0.8rem 1.5rem;
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .testimonial__title {
+            font-size: 2.5rem;
+            flex-direction: row;
+            gap: 0.5rem;
           }
           
-          .testimonial__title {
-            font-size: 1.8rem;
+          .testimonial__card {
+            max-width: 350px;
+            min-height: 500px;
           }
           
           .testimonial__img-container {
-            width: 100px;
-            height: 100px;
+            height: 250px;
+          }
+        }
+
+        @media (min-width: 1025px) {
+          .testimonial__title {
+            font-size: 3rem;
+            flex-direction: row;
+            gap: 0.5rem;
+          }
+          
+          .testimonial__card {
+            max-width: 400px;
+            min-height: 600px;
+          }
+          
+          .testimonial__img-container {
+            height: 350px;
           }
         }
       `}</style>
