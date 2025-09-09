@@ -66,7 +66,7 @@ export default function Hero() {
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${heroBgImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'bottom',
         }}
       ></div>
       
@@ -76,7 +76,7 @@ export default function Hero() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-start lg:items-center pt-8 md:pt-12">
           {/* Left text content - positioned under navigation */}
-          <div className="w-full lg:w-1/2 lg:pl-8 xl:pl-16 text-center lg:text-left order-2 lg:order-1">
+          <div className="w-full lg:w-1/2 lg:pl-4 xl:pl-8 text-center lg:text-left order-2 lg:order-1">
             <h1 className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="inline-block relative">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600 drop-shadow-[0_2px_3px_rgba(249,115,22,0.5)]">
