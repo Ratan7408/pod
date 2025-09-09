@@ -28,10 +28,10 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>PrintCraft - Premium Print on Demand Service</title>
-        <meta name="description" content="Transform your creativity into premium custom products with our high-quality print on demand service. T-Shirts, Phone Covers, Plates, Bottles and more!" />
-        <meta property="og:title" content="PrintCraft - Premium Print on Demand Service" />
-        <meta property="og:description" content="Transform your creativity into premium custom products with our high-quality print on demand service." />
+        <title>ANIME INDIA POD - Unleash Your Passion. Wear Your Power.</title>
+        <meta name="description" content="Transform your anime fandom into wearable art with our premium customized products featuring your favorite legendary characters and epic designs." />
+        <meta property="og:title" content="ANIME INDIA POD - Unleash Your Passion. Wear Your Power." />
+        <meta property="og:description" content="Transform your anime fandom into wearable art with our premium customized products featuring your favorite legendary characters and epic designs." />
         <meta property="og:type" content="website" />
       </Helmet>
       
